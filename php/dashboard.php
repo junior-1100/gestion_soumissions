@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.html'); // Rediriger vers la page de connexion
+    header('Location: ../login.html');
     exit();
 }
 
@@ -18,7 +17,15 @@ $role = $_SESSION['role'];
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <h1>Bienvenue, <?= $role === 'admin' ? 'Admin' : 'Vendeur' ?></h1>
-    <a href="logout.php">Déconnexion</a>
+    <div class="dashboard">
+        <header>
+            <h1>Bienvenue, <?= $role === 'admin' ? 'Admin' : 'Vendeur' ?></h1>
+            <nav>
+                <a href="nouvelle_soumission.php" class="button">Nouvelle Soumission</a>
+                <a href="mes_soumissions.php" class="button">Mes Soumissions</a>
+                <a href="logout.php" class="button logout">Déconnexion</a>
+            </nav>
+        </header>
+    </div>
 </body>
 </html>

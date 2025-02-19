@@ -1,8 +1,10 @@
 <?php
 session_start();
-require 'db.php'; // Inclure le fichier de connexion à la base de données
+require_once 'db.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    global $pdo;
+    
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -15,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Connexion réussie
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
-        header('Location: dashboard.php'); // Rediriger vers le tableau de bord
+        header('Location: dashboard.php');
         exit();
     } else {
         // Connexion échouée
